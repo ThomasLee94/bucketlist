@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/ThomasLee94/bucketlist/issues"
   },
-  "homepage": "https://github.com/ThomasLee94/bucketlist#readme"
+  "homepage": "https://github.com/ThomasLee94/bucketlist#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.4.2",
+    "nodemon": "^1.18.9"
+  }
 }

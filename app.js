@@ -16,7 +16,7 @@ const cookieParser = require("cookie-parser");
 let app = express();
 
 /** Initialise cookieParser */
-app.us(cookieParser());
+app.use(cookieParser());
 
 /** Authentication with nToken*/
 let checkAuth = (req, res, next) => {
@@ -52,4 +52,3 @@ app.set("view engine", "handlebars");
 const port = process.env.PORT || 3000;
 app.listen(port)
 
-asdffas
