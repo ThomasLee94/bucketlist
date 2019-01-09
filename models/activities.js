@@ -9,7 +9,7 @@ let activitySchema = new Schema({
 });
 
 // Generating the model for local resident
-let Activity = mongoose.model("Local", activitySchema);
+let Activity = mongoose.model("Activity", activitySchema);
 
 // Exporting Local to be used in routes
 module.exports = Activity; 
