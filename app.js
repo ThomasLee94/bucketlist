@@ -10,6 +10,7 @@ const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const jwt = require('jsonwebtoken');
 
 
 /** Run app.js as an instasnce of express */
