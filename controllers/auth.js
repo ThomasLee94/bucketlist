@@ -4,10 +4,10 @@ const User = require("../models/user");
 const jwt = require('jsonwebtoken');
 
 module.exports = (app) => {
-    // SIGN UP POST
+    /* SIGN UP POST */
     app.post("/sign-up", (req, res) => {
         console.log(req.body)
-        // Create User and JWT
+        /*  Create User and JWT */
         const user = new User(req.body);
         
         user.save().then(user => {
@@ -21,40 +21,40 @@ module.exports = (app) => {
 
     });
 
-    // Sign up GET
+    /*  Sign up GET */
     app.get("/sign-up", (req, res) => {
         res.render("sign-up")
     })
 
-    // LOGIN FORM
+    /*  LOGIN FORM */
     app.get('/login', (req, res) => {
         res.render("login");
     });
 
-    // LOGIN
+    /* LOGIN */
     app.post("/login", (req, res) => {
         const email = req.body.email;
         const password = req.body.password;
-        // Find this user name
+        /*  Find this user name */
         User.findOne({ email }, "username password")
         .then(user => {
             if (!user) {
-            // User not found
+            /*  User not found */
             return res.status(401).send({ message: "Wrong Username or Password" });
             
             }
-            // Check the password
+            /*  Check the password */
             user.comparePassword(password, (err, isMatch) => {
             if (!isMatch) {
-                // Password does not match
+                /*  Password does not match */
                 return res.status(401).send({ message: "Wrong Username or password" });
                 
             }
-            // Create a token
+            /*  Create a token */
             const token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, {
                 expiresIn: "60 days"
             });
-            // Set a cookie and redirect to root
+            /*  Set a cookie and redirect to root */
             res.cookie("nToken", token, { maxAge: 900000, httpOnly: true });
             res.redirect("/");
             });
@@ -64,7 +64,7 @@ module.exports = (app) => {
         });
     });
 
-    // LOGOUT
+    /*  LOGOUT */
     app.get('/logout', (req, res) => {
         res.clearCookie('nToken');
         res.redirect('/');

@@ -1,4 +1,4 @@
-// Initialise mongoose
+/*  Initialise mongoose */
 let mongoose = require("mongoose");
 let Schema = mongoose.Schema; 
 
@@ -9,7 +9,7 @@ let activitySchema = new Schema({
     tag: String
 });
 
-// Generating the model for local resident
+/*  Generating the model for local resident */
 let Activity = mongoose.model("Activity", activitySchema);
 
 // Exporting Local to be used in routes

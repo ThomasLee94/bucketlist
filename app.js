@@ -1,8 +1,9 @@
-/**
- * *******************
+
+ /* * ****************
  * Project: BUCKETLIST
- * *******************
- */
+ * ******************* 
+ * */
+
 
 /** Require npm packages */
 const express = require("express");
@@ -13,13 +14,13 @@ const cookieParser = require("cookie-parser");
 const jwt = require('jsonwebtoken');
 
 
-/** Run app.js as an instasnce of express */
+/*  Run app.js as an instasnce of express */
 let app = express();
 
-/** Initialise cookieParser */
+/*  Initialise cookieParser  */
 app.use(cookieParser());
 
-/** Authentication with nToken*/
+/*  Authentication with nToken */
 let checkAuth = (req, res, next) => {
     console.log("Checking authentication");
     console.log(req.cookies);
@@ -37,25 +38,25 @@ let checkAuth = (req, res, next) => {
     }
 }
 
-/** Connecting to mongoose */
+/*  Connecting to mongoose */ 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bucketlist', { useNewUrlParser: true });
 let db = mongoose.connection;
 
-/** Use body-parser */
+/*  Use body-parser */ 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
-/** Use handlebars for client-side rendering */
+/*  Use handlebars for client-side rendering  */
 app.engine("handlebars", handlebars({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 app.use(checkAuth);
 
-// * Importing controllers
+/*  Importing controllers */
 require('./controllers/auth')(app);
 require('./controllers/users')(app);
 
-/**Port */
+/*  Port */ 
 const port = process.env.PORT || 3000;
 app.listen(port)
 

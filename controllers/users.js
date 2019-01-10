@@ -2,9 +2,9 @@
 const User = require("../models/user");
 
 module.exports = (app) => {
-    // * Routes
+    /* ROUTES */
 
-    // * Forcing login page for all routes. 
+    /*  Forcing login page for all routes */
     app.use("*", (req, res, next) => {
         if(req.cookies.nToken){
             next();
@@ -13,13 +13,13 @@ module.exports = (app) => {
         }
     })
 
-    // * Index
+    /*  Index */
     app.get('/', (req, res) => {
         const user = res.locals.currentUser;
         if (user !== null) {
             User.find()
                 .then((skills) => {
-                res.render("activities-index", {activity: activity})
+                res.render("landing-page", {activity: activity})
                 }).catch(err => {
                     console.log(err)
                 })
