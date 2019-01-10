@@ -40,7 +40,11 @@ let checkAuth = (req, res, next) => {
 
 /*  Connecting to mongoose */ 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bucketlist', { useNewUrlParser: true });
+/* Checking or mongoose connection */
 let db = mongoose.connection;
+db.on("connected", () => {
+    console.log("Success: connected to MongoDB");
+})
 
 /*  Use body-parser */ 
 app.use(bodyParser.urlencoded({extended: true}));

@@ -9,7 +9,7 @@ let userSchema = new Schema({
 });
 
 // Generating the model for local resident
-let User = mongoose.model("User", userSchema);
+let User = mongoose.model("User", userSchema); 
 
 // Exporting Local to be used in routes
 module.exports = User; 
