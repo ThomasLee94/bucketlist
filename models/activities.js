@@ -3,7 +3,8 @@ let mongoose = require("mongoose");
 let Schema = mongoose.Schema; 
 
 let activitySchema = new Schema({
-    name: String,
+    title: String,
+    description: String,
     destination: String,
     tag: String
 });

@@ -1,5 +1,5 @@
 /** Importing models */
-const Activity = require("../models/skill");
+const Activity = require("../models/activities");
 const User = require("../models/user");
 const jwt = require('jsonwebtoken');
 

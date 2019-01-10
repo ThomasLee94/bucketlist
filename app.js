@@ -49,6 +49,12 @@ app.use(express.json());
 app.engine("handlebars", handlebars({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
+app.use(checkAuth);
+
+// * Importing controllers
+require('./controllers/auth')(app);
+require('./controllers/users')(app);
+
 /**Port */
 const port = process.env.PORT || 3000;
 app.listen(port)

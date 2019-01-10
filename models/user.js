@@ -12,4 +12,4 @@ let userSchema = new Schema({
 let User = mongoose.model("User", userSchema);
 
 // Exporting Local to be used in routes
-module.exports = Local; 
+module.exports = User; 
