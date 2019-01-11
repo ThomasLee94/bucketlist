@@ -6,18 +6,27 @@ const jwt = require('jsonwebtoken');
 module.exports = (app) => {
     /* SIGN UP POST */
     app.post("/sign-up", (req, res) => {
-        console.log(req.body)
-        /*  Create User and JWT */
-        const user = new User(req.body);
+        // console.log(req.body)
+
+        /* Checking if password matching confirm password */    
+        if (req.body.password === req.body.confirmPassword){
+            /*  Create User and JWT */
+            const user = new User({email: req.body.email, name: req.body.name, password: req.body.password});
         
-        user.save().then(user => {
-                let token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, { expiresIn: "60 days" });
-                res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-                res.redirect("/");
-            }).catch(err => {
-                console.log(err.message);
-                return res.status(400).send({ err: err });
-            });
+                console.log(user)
+
+            user.save().then(user => {
+                    console.log(user)
+                    let token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, { expiresIn: "60 days" });
+                    res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
+                    var newToken = req.cookies.nToken;
+                    var decodedToken = jwt.decode(newToken, { complete: true }) || {};
+                    res.redirect("/");
+                }).catch(err => {
+                    console.log(err.message);
+                    return res.status(400).send(err.message);
+                });
+        }
 
     });
 
@@ -38,26 +47,17 @@ module.exports = (app) => {
         /*  Find this user name */
         User.findOne({ email }, "username password")
         .then(user => {
-            if (!user) {
-            /*  User not found */
-            return res.status(401).send({ message: "Wrong Username or Password" });
-            
-            }
             /*  Check the password */
-            user.comparePassword(password, (err, isMatch) => {
-            if (!isMatch) {
-                /*  Password does not match */
-                return res.status(401).send({ message: "Wrong Username or password" });
-                
-            }
+           
             /*  Create a token */
             const token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, {
                 expiresIn: "60 days"
             });
             /*  Set a cookie and redirect to root */
             res.cookie("nToken", token, { maxAge: 900000, httpOnly: true });
+        
             res.redirect("/");
-            });
+        
         })
         .catch(err => {
             console.log(err);

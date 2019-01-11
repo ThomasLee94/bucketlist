@@ -5,7 +5,9 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
     name: String,
     destination: String,
-    tag: String
+    tag: String,
+    email: String,
+    password: String
 });
 
 // Generating the model for local resident
