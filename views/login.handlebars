@@ -1,37 +1,43 @@
 
-<form action="/login" method="post">
-    <legend>Login In</legend>
+<form action="/login" method="post" class="container">
+    {{!-- <div class="container"> --}}
+      <legend>Login In</legend>
 
-    <br>
+      <br>
 
-    {{!-- EMAIL --}}
-    <div class="form-group">
-      <label for="name">E-mail</label><br>
-      <input class="form-control"
-        id="email"
-        type="email"
-        name="email"
-        placeholder="e-mail"/>
+        {{!-- EMAIL --}}
+        <div class="form-group">
+          <label for="name">E-mail</label><br>
+          <input class="form-control"
+            id="email"
+            type="email"
+            name="email"
+            placeholder="e-mail"/>
+        </div>
+
+        {{!--  PASSWORD  --}}
+        <div class="form-group">
+          <label for="name">Password</label><br>
+          <input class="form-control"
+            id="password"
+            type="password"
+            name="password"
+            placeholder="password"/>
+        </div>
+
+        {{!-- BUTTON --}}
+        <div class="form-group">
+            <div class="text-center">
+              <button
+                  style="margin-top: 30px"
+                  class="btn btn-primary"
+                  type="submit">Login</button>
+        </div>
+      {{!-- </div> --}}
     </div>
+    
+</form>
 
-    {{!--  PASSWORD  --}}
-    <div class="form-group">
-      <label for="name">Password</label><br>
-      <input class="form-control"
-        id="password"
-        type="password"
-        name="password"
-        placeholder="password"/>
-    </div>
-
-  {{!-- BUTTON --}}
-
-  <div class="form-group">
-      <div class="text-center">
-        <button
-            style="margin-top: 30px"
-            class="btn btn-primary"
-            type="submit">Login</button>
-      </div>
-  </div>
+<form class="container">
+  <a href="/sign-up">Don't have an account? Sign-up now!</a>
 </form>
