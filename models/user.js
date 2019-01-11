@@ -1,4 +1,4 @@
-// Initialise mongoose
+/*  Initialise mongoose */
 let mongoose = require("mongoose");
 let Schema = mongoose.Schema; 
 
@@ -10,8 +10,8 @@ let userSchema = new Schema({
     password: String
 });
 
-// Generating the model for local resident
+/*  Generating the model for local resident */
 let User = mongoose.model("User", userSchema); 
 
-// Exporting Local to be used in routes
+/*  Exporting Local to be used in routes */
 module.exports = User; 
