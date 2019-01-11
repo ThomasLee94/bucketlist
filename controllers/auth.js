@@ -6,31 +6,28 @@ const jwt = require('jsonwebtoken');
 module.exports = (app) => {
     /* SIGN UP POST */
     app.post("/sign-up", (req, res) => {
-        // console.log(req.body)
 
         /* Checking if password matching confirm password */    
         if (req.body.password === req.body.confirmPassword){
             /*  Create User and JWT */
             const user = new User({email: req.body.email, name: req.body.name, password: req.body.password});
-        
-                console.log(user)
 
             user.save().then(user => {
                     console.log(user)
                     let token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, { expiresIn: "60 days" });
                     res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-                    var newToken = req.cookies.nToken;
-                    var decodedToken = jwt.decode(newToken, { complete: true }) || {};
+                    let newToken = req.cookies.nToken;
+                    let decodedToken = jwt.decode(newToken, { complete: true }) || {};
                     res.redirect("/");
                 }).catch(err => {
                     console.log(err.message);
                     return res.status(400).send(err.message);
                 });
-        }
+        } 
 
     });
 
-    /*  Sign up GET */
+    /*  SIGN UP GET */
     app.get("/sign-up", (req, res) => {
         res.render("sign-up")
     })
@@ -47,8 +44,6 @@ module.exports = (app) => {
         /*  Find this user name */
         User.findOne({ email }, "username password")
         .then(user => {
-            /*  Check the password */
-           
             /*  Create a token */
             const token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, {
                 expiresIn: "60 days"

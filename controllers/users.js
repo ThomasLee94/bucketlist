@@ -8,17 +8,13 @@ module.exports = (app) => {
     app.use("*", (req, res, next) => {
         if (req.cookies === undefined){
             console.log('NO COOKIES')
-            
             res.redirect('/login');
-            
         }
         next();
     })
 
     /*  Index */
     app.get('/', (req, res) => {
-        console.log("HOME ROUTE")
-        console.log(req.cookies)
         const currentUser = req.user;
         if (currentUser !== null) {
 
@@ -34,8 +30,8 @@ module.exports = (app) => {
         }
     })
 
-    app.post('/user/activity', (req, res) => {
-
+    app.post('/:user/activity', (req, res) => {
+        
     })
       
 }
