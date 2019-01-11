@@ -17,7 +17,6 @@ module.exports = (app) => {
     app.get('/', (req, res) => {
         const currentUser = req.user;
         if (currentUser !== null) {
-
             User.findById({_id:currentUser._id})
                 .then((user) => {
                     console.log(user)
@@ -30,8 +29,15 @@ module.exports = (app) => {
         }
     })
 
+    app.get('/activity-create', (req, res) => {
+        res.render('create-activity-form')
+    })
+
     app.post('/:user/activity', (req, res) => {
-        
+        Activity.create(req.body)
+            .then(activity => {
+                res.redirect("/")
+            })
     })
       
 }

@@ -1,0 +1,60 @@
+
+<form action="/{{currentUser}}/activity" method="post" class="container">
+    {{!-- <div class="container"> --}}
+      <legend>Create Activity</legend>
+
+      <br>
+
+        {{!-- EMAIL --}}
+        <div class="form-group">
+          <label for="name">Title</label><br>
+          <input class="form-control"
+            id="title"
+            type="title"
+            name="title"
+            placeholder="Title"/>
+        </div>
+
+        {{!--  PASSWORD  --}}
+        <div class="form-group">
+          <label for="name">Description</label><br>
+          <input class="form-control"
+            id="description"
+            type="description"
+            name="description"
+            placeholder="Description"/>
+        </div>
+
+        {{!-- DESTINATION --}}
+        {<div class="form-group">
+          <label for="name">Destination</label><br>
+          <input class="form-control"
+            id="destintation"
+            type="destination"
+            name="destination"
+            placeholder="Destintation"/>
+        </div>
+      
+        {{!-- TAG --}}
+        <div class="form-group">
+          <label for="name">Tag</label><br>
+          <input class="form-control"
+            id="tag"
+            type="tag"
+            name="tag"
+            placeholder="Tag"/>
+        </div>
+
+        {{!-- BUTTON --}}
+        <div class="form-group">
+            <div class="text-center">
+              <button
+                  style="margin-top: 30px"
+                  class="btn btn-primary"
+                  type="submit">Submit</button>
+        </div>
+    </div>
+    
+</form>
+
+
