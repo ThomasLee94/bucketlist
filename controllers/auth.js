@@ -6,12 +6,10 @@ const jwt = require('jsonwebtoken');
 module.exports = (app) => {
     /* SIGN UP POST */
     app.post("/sign-up", (req, res) => {
-
         /* Checking if password matching confirm password */    
         if (req.body.password === req.body.confirmPassword){
             /*  Create User and JWT */
             const user = new User({email: req.body.email, name: req.body.name, password: req.body.password});
-
             user.save().then(user => {
                     console.log(user)
                     let token = jwt.sign({ _id: user._id, name: user.name, email: user.email }, process.env.SECRET, { expiresIn: "60 days" });
@@ -50,7 +48,6 @@ module.exports = (app) => {
             });
             /*  Set a cookie and redirect to root */
             res.cookie("nToken", token, { maxAge: 900000, httpOnly: true });
-        
             res.redirect("/");
         
         })
