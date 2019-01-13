@@ -4,7 +4,6 @@
  * ******************* 
  * */
 
-
 /** Require npm packages */
 // dotenv will be needed for secrets
 require("dotenv").config()
@@ -18,33 +17,14 @@ const jwt = require('jsonwebtoken');
 /*  Run app.js as an instasnce of express */
 let app = express();
 
-
+/*  Initialise cookieParser  */
 app.use(cookieParser());
+
+/*  Use body-parser */ 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
-/*  Initialise cookieParser  */
 
-
-/*  Authentication with nToken */
-// let checkAuth = (req, res, next) => {
-//     console.log("Checking authentication");
-//     console.log(req.cookies);
-//     if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
-//         console.log("not logged in");
-//         res.locals.currentUser = null;
-        
-//     } else {
-//         console.log("loggedn in!");
-//         let token = req.cookies.nToken;
-//         let decodedToken = jwt.decode(token, {complete: true}) || {};
-//         // console.log("Decoded Token", decodedToken);
-//         req.userId = decodedToken.payload._id; 
-//         res.locals.currentUser = decodedToken.payload; 
-//     }
-//     next();
-// }
-
-var checkAuth = (req, res, next) => {
+let checkAuth = (req, res, next) => {
     console.log("Checking authentication");
 
     if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
@@ -52,10 +32,9 @@ var checkAuth = (req, res, next) => {
       console.log('HIT NO USER')
     } else {
         console.log(req.cookies)
-      var token = req.cookies.nToken;
-      var decodedToken = jwt.decode(token, { complete: true }) || {};
+      let token = req.cookies.nToken;
+      let decodedToken = jwt.decode(token, { complete: true }) || {};
       req.user = decodedToken.payload;
-      console.log('HIT - THERES A USER')
       console.log(req.user)
     }
   
@@ -71,16 +50,13 @@ db.on("connected", () => {
     console.log("Success: connected to MongoDB");
 })
 
-/*  Use body-parser */ 
-
 
 /*  Use handlebars for client-side rendering  */
 app.engine("handlebars", handlebars({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-
+/* Authentication */
 app.use(checkAuth);
-
 
 /*  Importing controllers */
 require('./controllers/users')(app);
