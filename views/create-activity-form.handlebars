@@ -1,6 +1,5 @@
 
-<form action="/{{currentUser}}/activity" method="post" class="container">
-    {{!-- <div class="container"> --}}
+<form action="/{{currentUser.email}}/activity" method="post" class="container">
       <legend>Create Activity</legend>
 
       <br>
@@ -26,7 +25,7 @@
         </div>
 
         {{!-- DESTINATION --}}
-        {<div class="form-group">
+        <div class="form-group">
           <label for="name">Destination</label><br>
           <input class="form-control"
             id="destintation"

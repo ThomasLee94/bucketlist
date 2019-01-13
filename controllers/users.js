@@ -30,7 +30,10 @@ module.exports = (app) => {
     })
 
     app.get('/activity-create', (req, res) => {
-        res.render('create-activity-form')
+        const currentUser = req.user;
+        console.log('here')
+        console.log(currentUser)
+        res.render('create-activity-form', {currentUser})
     })
 
     app.post('/:user/activity', (req, res) => {

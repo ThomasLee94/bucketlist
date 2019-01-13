@@ -14,7 +14,7 @@ module.exports = (app) => {
 
             user.save().then(user => {
                     console.log(user)
-                    let token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, { expiresIn: "60 days" });
+                    let token = jwt.sign({ _id: user._id, name: user.name, email: user.email }, process.env.SECRET, { expiresIn: "60 days" });
                     res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
                     let newToken = req.cookies.nToken;
                     let decodedToken = jwt.decode(newToken, { complete: true }) || {};
@@ -42,10 +42,10 @@ module.exports = (app) => {
         const email = req.body.email;
         const password = req.body.password;
         /*  Find this user name */
-        User.findOne({ email }, "username password")
+        User.findOne({ email }, "name email password")
         .then(user => {
             /*  Create a token */
-            const token = jwt.sign({ _id: user._id, name: user.name }, process.env.SECRET, {
+            const token = jwt.sign({ _id: user._id, name: user.name, email: user.email }, process.env.SECRET, {
                 expiresIn: "60 days"
             });
             /*  Set a cookie and redirect to root */

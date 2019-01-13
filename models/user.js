@@ -6,7 +6,7 @@ let userSchema = new Schema({
     name: String,
     destination: String,
     tag: String,
-    email: String,
+    email: { type: String, unique: true },
     password: String
 });
 
