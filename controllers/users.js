@@ -3,7 +3,6 @@ const User = require("../models/user");
 const Activity = require("../models/activities")
 
 module.exports = (app) => {
-    
     /*  Forcing login page for all routes */
     app.use("*", (req, res, next) => {
         if (req.cookies === undefined){
@@ -29,18 +28,27 @@ module.exports = (app) => {
         }
     })
 
+    /* Create activity form */
     app.get('/activity-create', (req, res) => {
         const currentUser = req.user;
-        console.log('here')
         console.log(currentUser)
         res.render('create-activity-form', {currentUser})
     })
-
+    /* Create activity POST */
     app.post('/:user/activity', (req, res) => {
         Activity.create(req.body)
-            .then(activity => {
+            .then((activity) => {
                 res.redirect("/")
             })
+    })
+
+    /* Show all activities */
+    app.get('/activities', (req, res) => {
+        Activity.find()
+            .then((activities) => {
+                res.render('activities', {activities})
+            })
+        
     })
       
 }
