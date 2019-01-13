@@ -13,6 +13,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const jwt = require('jsonwebtoken');
+/* OpenLayers API */
+const map = require("ol");
+/* Babel for transpiling */
+
 
 /*  Run app.js as an instasnce of express */
 let app = express();
