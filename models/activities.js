@@ -1,12 +1,20 @@
 /*  Initialise mongoose */
 let mongoose = require("mongoose");
+require("mongoose-double")(mongoose); 
 let Schema = mongoose.Schema; 
 
 let activitySchema = new Schema({
     title: String,
     description: String,
-    destination: String,
-    tag: String
+    longitude: {
+        type: mongoose.Schema.Types.Double,
+        required: true
+    },
+    latitude: {
+        type: mongoose.Schema.Types.Double,
+        required: true
+    },
+    address: String
 });
 
 /*  Generating the model for local resident */

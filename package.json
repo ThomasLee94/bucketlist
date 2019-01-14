@@ -26,6 +26,7 @@
     "handlebars": "^4.0.12",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.3",
+    "mongoose-double": "0.0.1",
     "nodemon": "^1.18.9"
   },
   "devDependencies": {

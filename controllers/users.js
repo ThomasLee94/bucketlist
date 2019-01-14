@@ -17,9 +17,11 @@ module.exports = (app) => {
         const currentUser = req.user;
         if (currentUser !== null) {
             User.findById({_id:currentUser._id})
-                .then((user) => {
-                    console.log(user)
-                res.render("landing-page", {currentUser})
+                .then(user => {
+                    return Activity.find()
+                })
+                .then(activities => {
+                    res.render("landing-page", {currentUser, activities})
                 }).catch(err => {
                     console.log(err)
                 })
@@ -36,6 +38,8 @@ module.exports = (app) => {
     })
     /* Create activity POST */
     app.post('/:user/activity', (req, res) => {
+        req.body.longitude = parseFloat(req.body.longitude);
+        req.body.latitude = parseFloat(req.body.latitude);
         Activity.create(req.body)
             .then((activity) => {
                 res.redirect("/")
