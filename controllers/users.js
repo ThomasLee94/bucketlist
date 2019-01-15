@@ -48,9 +48,10 @@ module.exports = (app) => {
 
     /* Show all activities */
     app.get('/activities', (req, res) => {
+        const currentUser = req.user;
         Activity.find()
             .then((activities) => {
-                res.render('activities', {activities})
+                res.render('activities', {activities, currentUser})
             })
         
     })
