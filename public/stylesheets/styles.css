@@ -16,3 +16,7 @@
     border: 5px solid black;
     margin: 10px; 
 }
+
+#title, #description, #coordinates, #address{
+    font-size: 20px;
+}
