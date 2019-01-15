@@ -28,6 +28,10 @@
             border-radius: 50%;
             cursor: pointer;
         }
+
+        .mapboxlg-popup{
+            max-width: 200px;
+        }
     </style>
     
     <script>
@@ -49,7 +53,7 @@
             el.id = item._id
             el.className = "marker"
 
-            new mapboxgl.Marker(el).setLngLat([item.latitude, item.longitude]).addTo(map);
+            new mapboxgl.Marker(el).setLngLat([item.latitude, item.longitude]).setPopup(popup).addTo(map);
         })
     }}) 
 
