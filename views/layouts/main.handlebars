@@ -15,9 +15,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {{!-- importing library to use ajax --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 
+    <style>
+        .marker {
+            background-image: url('https://www.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+    
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoidG9tbGVlOTQiLCJhIjoiY2pxd292ZHdsMTg5ejN4bnZ1a2FieTAzMCJ9.EsIA5s1ncebgjmD8S16H9Q';
     var map = new mapboxgl.Map({
@@ -26,9 +38,23 @@
         center: [-122.4194, 37.7749],
         zoom: 11
     });
-    </script>
-    <script src="index.js"></script>
 
+    // Ajax call to show pins in map with popups
+    $.ajax({url: "/activities-json", success: function(result){
+        result.forEach(item => {
+            console.log(item, 'test')
+            const popup = new mapboxgl.Popup({offset:25}).setText(item.title)
+
+            const el = document.createElement("div")
+            el.id = item._id
+            el.className = "marker"
+
+            new mapboxgl.Marker(el).setLngLat([item.latitude, item.longitude]).addTo(map);
+        })
+    }}) 
+
+    </script>
+    {{!-- <script src="index.js"></script> --}}
 </body>
 
     

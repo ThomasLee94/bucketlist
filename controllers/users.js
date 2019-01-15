@@ -54,5 +54,12 @@ module.exports = (app) => {
             })
         
     })
+
+    app.get('/activities-json', (req, res) => {
+        Activity.find()
+            .then(activities => {
+                res.send(activities)
+            })
+    })
       
 }
