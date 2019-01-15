@@ -1,6 +1,13 @@
 .container{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+}
+
+.sign-up-link{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .activities-box{
