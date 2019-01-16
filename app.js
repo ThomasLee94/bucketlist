@@ -42,9 +42,9 @@ let checkAuth = (req, res, next) => {
    next()
   }
 
-
+console.log("FUCK:", process.env.MONGODB_URI);
 /*  Connecting to mongoose */ 
-mongoose.connect('mongodb://localhost/bucketlist', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI);
 /* Checking or mongoose connection */
 let db = mongoose.connection;
 db.on("connected", () => {
@@ -62,7 +62,6 @@ app.use(checkAuth);
 /*  Importing controllers */
 require('./controllers/users')(app);
 require('./controllers/auth')(app);
-
 
 /*  Port */ 
 const port = process.env.PORT || 3000;
