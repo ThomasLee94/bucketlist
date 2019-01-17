@@ -5,10 +5,10 @@ A platform to allow only Locals to post about their activities in their area for
 * A more detailed write up is in progress *
 
 A wireframe for what the web app will look like can be found under the following links:
-- [1](https://wiresketch.com/qvgili4O/landingpage)
-- [2](https://wiresketch.com/Y0Nf1pF9/signup) 
-- [3](https://wiresketch.com/v6v9y80g/activitiesbylocation)
-- [4](https://wiresketch.com/yOE7RzGg/allactivites)
+- [1](https://wiresketch.com/qvgili4O/landingpage) - Login page
+- [2](https://wiresketch.com/Y0Nf1pF9/signup) - Sign up page
+- [3](https://wiresketch.com/v6v9y80g/activitiesbylocation) - Activiteis by location
+- [4](https://wiresketch.com/yOE7RzGg/allactivites) - All activites
 
 ## Setup
 - Clone the repo:
